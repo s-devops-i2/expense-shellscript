@@ -22,7 +22,7 @@ mkdir /app
 fi
 
 
-echo Setup SystemD Expense Backend Service
+echo copy Backend Service
 cp backend.service /etc/systemd/system/backend.service
 
 echo Download the application code to created app directory.
@@ -30,11 +30,11 @@ echo Download the application code to created app directory.
 curl -o /tmp/backend.zip https://expense-artifacts.s3.amazonaws.com/expense-backend-v2.zip &>>/tmp/data.log
 echo $?
 cd /app
-pwd
 
+if [ !z /app ]; then
 unzip /tmp/backend.zip &>>/tmp/data.log
+fi
 echo $?
-
 
 echo download the dependencies.
 
