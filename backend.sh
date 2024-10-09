@@ -11,9 +11,10 @@ echo $?
 
 
 echo Add application User
-
+id expense
+if [ $? -ne 0 ]; then
 useradd expense
-echo $?
+fi
 echo setup an app directory.
 
 mkdir /app
