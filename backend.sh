@@ -25,10 +25,10 @@ echo Setup SystemD Expense Backend Service
 
 cp backend.service /etc/systemd/system/backend.service
 
-echo Lets download the dependencies.
+echo download the dependencies.
 
-cd /app
-npm install
+#cd /app
+npm install &>>/tmp/data.log
 
 
 echo Load the service.
