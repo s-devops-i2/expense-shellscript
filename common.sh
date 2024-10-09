@@ -8,7 +8,7 @@ print_status(){
   if [ $? -eq 0 ]; then
       echo -e "\e[32mSuccess\e[0m"
   else
-      echo -e "\[31mFailed\e[0m"
+      echo -e "\e[33mFailed\e[0m"
   fi
 
 }
