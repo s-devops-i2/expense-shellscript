@@ -14,20 +14,20 @@ print_status(){
 }
 
 App_PreReq() {
-  Print_heading "Clean the Old Content"
+  print_heading "Clean the Old Content"
   rm -rf ${app_dir} &>>$LOG
-  Check_Status $?
+  print_status $?
 
-  Print_heading "Create App Directory"
+  print_heading "Create App Directory"
   mkdir ${app_dir} &>>$LOG
-  Check_Status $?
+  print_status $?
 
-  Print_heading "Download App Content"
+  print_heading "Download App Content"
   curl -o /tmp/${component}.zip https://expense-artifacts.s3.amazonaws.com/expense-${component}-v2.zip &>>$LOG
-  Check_Status $?
+  print_status $?
 
-  Print_heading "Extract App Content"
+  print_heading "Extract App Content"
   cd ${app_dir} &>>$LOG
   unzip /tmp/${component}.zip &>>$LOG
-  Check_Status $?
+  print_status $?
 }
