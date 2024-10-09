@@ -15,7 +15,9 @@ curl -o /tmp/frontend.zip https://expense-artifacts.s3.amazonaws.com/expense-fro
 echo Extract the frontend content.
 cd /usr/share/nginx/html &>>tmp.log
 
-unzip /tmp/frontend.zip
+unzip /tmp/frontend.zip &>>tmp.log
 
-systemctl enable nginx
-systemctl restart nginx
+echo Enable nginx
+systemctl enable nginx &>>tmp.log
+echo Start nginx
+systemctl start nginx
