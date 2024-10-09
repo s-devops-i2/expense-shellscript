@@ -11,13 +11,16 @@ echo $?
 
 
 echo Add application User
-id expense
+id expense &>>/tmp/data.log
 if [ $? -ne 0 ]; then
 useradd expense
 fi
-echo setup an app directory.
 
+echo setup an app directory.
+if [ ! -d /app  ]; then
 mkdir /app
+fi
+
 
 echo Setup SystemD Expense Backend Service
 cp backend.service /etc/systemd/system/backend.service
