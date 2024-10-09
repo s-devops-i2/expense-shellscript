@@ -1,47 +1,35 @@
 source common.sh
 
+component=backend
+app_dir=/app
+
 print_heading "disable nodejs"
-dnf module disable nodejs -y &>>/tmp/data.log
+dnf module disable nodejs -y &>>$LOG
 echo $?
 print_heading  "enable nodejs"
-dnf module enable nodejs:20 -y &>>/tmp/data.log
+dnf module enable nodejs:20 -y &>>$LOG
 print_status $?
 
 print_heading  "install nodejs"
-dnf install nodejs -y &>>/tmp/data.log
+dnf install nodejs -y &>>$LOG
 print_status $?
 
 
 print_heading  "Add application User"
-id expense &>>/tmp/data.log
+id expense &>>$LOG
 if [ $? -ne 0 ]; then
 useradd expense
 fi
 
-print_heading  "setup an app directory."
-if [ ! -d /app  ]; then
-mkdir /app
-fi
-
-
-print_heading  "copy Backend Service"
+print_heading  "copy Backend Service file"
 cp backend.service /etc/systemd/system/backend.service
 
-print_heading  "Download the application code to created app directory."
-
-curl -o /tmp/backend.zip https://expense-artifacts.s3.amazonaws.com/expense-backend-v2.zip &>>/tmp/data.log
-print_status $?
-cd /app
-app_dir=/app
-if [ -z "${app_dir}" ]; then
-unzip /tmp/backend.zip &>>/tmp/data.log
-fi
-print_status $?
+App_PreReq
 
 print_heading  "download the dependencies."
 
 cd /app
-npm install &>>/tmp/data.log
+npm install &>>$LOG
 print_status $?
 
 print_heading  "Load the service."
@@ -50,13 +38,13 @@ systemctl daemon-reload
 print_status $?
 print_heading  "enable the service."
 
-systemctl enable backend &>>/tmp/data.log
+systemctl enable backend &>>$LOG
 print_status $?
 print_heading  "Start the service."
 systemctl start backend
 print_status $?
 print_heading  "install mysql client"
-dnf install mysql -y &>>/tmp/data.log
+dnf install mysql -y &>>$LOG
 print_status $?
 print_heading  "Load Schema"
 
