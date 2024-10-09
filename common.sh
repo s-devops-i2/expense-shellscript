@@ -6,9 +6,9 @@ print_heading(){
 
 print_status(){
   if [ $? -eq 0 ]; then
-      echo -e "\[32mSuccess\[0m"
+      echo -e "\e[32mSuccess\e[0m"
   else
-      echo -e "\[31mFailed\[0m"
+      echo -e "\[31mFailed\e[0m"
   fi
 
 }
