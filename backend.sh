@@ -40,7 +40,7 @@ echo $?
 
 echo download the dependencies.
 
-#cd /app
+cd /app
 npm install &>>/tmp/data.log
 echo $?
 
