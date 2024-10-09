@@ -33,8 +33,6 @@ cd /app
 app_dir=/app
 if [ -z "${app_dir}" ]; then
 unzip /tmp/backend.zip &>>/tmp/data.log
-else
-  exit 1
 fi
 echo $?
 
