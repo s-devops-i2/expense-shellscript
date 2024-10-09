@@ -30,9 +30,11 @@ echo Download the application code to created app directory.
 curl -o /tmp/backend.zip https://expense-artifacts.s3.amazonaws.com/expense-backend-v2.zip &>>/tmp/data.log
 echo $?
 cd /app
-app_dir = /app
-if [ !z "${app_dir}" ]; then
+app_dir=/app
+if [ -z "${app_dir}" ]; then
 unzip /tmp/backend.zip &>>/tmp/data.log
+else
+  exit 1
 fi
 echo $?
 
