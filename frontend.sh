@@ -1,6 +1,6 @@
 source common.sh
 
-print_heading Install Nginx
+print_heading "Install Nginx"
 echo $?
 dnf install nginx -y &>>/tmp/data.log
 echo $?
