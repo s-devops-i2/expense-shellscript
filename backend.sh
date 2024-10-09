@@ -5,11 +5,11 @@ dnf module disable nodejs -y &>>/tmp/data.log
 echo $?
 print_heading  "enable nodejs"
 dnf module enable nodejs:20 -y &>>/tmp/data.log
-echo $?
+print_status $?
 
 print_heading  "install nodejs"
 dnf install nodejs -y &>>/tmp/data.log
-echo $?
+print_status $?
 
 
 print_heading  "Add application User"
@@ -30,35 +30,35 @@ cp backend.service /etc/systemd/system/backend.service
 print_heading  "Download the application code to created app directory."
 
 curl -o /tmp/backend.zip https://expense-artifacts.s3.amazonaws.com/expense-backend-v2.zip &>>/tmp/data.log
-echo $?
+print_status $?
 cd /app
 app_dir=/app
 if [ -z "${app_dir}" ]; then
 unzip /tmp/backend.zip &>>/tmp/data.log
 fi
-echo $?
+print_status $?
 
 print_heading  "download the dependencies."
 
 cd /app
 npm install &>>/tmp/data.log
-echo $?
+print_status $?
 
 print_heading  "Load the service."
 
 systemctl daemon-reload
-echo $?
+print_status $?
 print_heading  "enable the service."
 
 systemctl enable backend &>>/tmp/data.log
-echo $?
+print_status $?
 print_heading  "Start the service."
 systemctl start backend
-echo $?
+print_status $?
 print_heading  "install mysql client"
 dnf install mysql -y &>>/tmp/data.log
-echo $?
+print_status $?
 print_heading  "Load Schema"
 
 mysql -h 172.31.31.229 -uroot -pExpenseApp@1 < /app/schema/backend.sql
-echo $?
+print_status $?
