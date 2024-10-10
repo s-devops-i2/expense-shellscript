@@ -2,7 +2,7 @@ source common.sh
 
 mysql_root_password=$1
 if [ -z "${mysql_root_password}" ]; then
-  echo Input is missing
+  echo -e "\e[31mInput is missing\e[0m"
   exit 1
     
 fi
