@@ -16,7 +16,7 @@ print_status $?
 
 App_PreReq
 
-print_heading  "Start nginx"
+print_heading  "Starting nginx"
 systemctl start nginx
 print_heading  "Enable nginx"
 systemctl enable nginx &>>$LOG
