@@ -5,7 +5,7 @@ app_dir=/app
 
 print_heading "disable nodejs"
 dnf module disable nodejs -y &>>$LOG
-echo $?
+print_status $?
 print_heading  "enable nodejs"
 dnf module enable nodejs:20 -y &>>$LOG
 print_status $?
