@@ -48,5 +48,5 @@ dnf install mysql -y &>>$LOG
 print_status $?
 print_heading  "Load Schema"
 
-mysql -h 172.31.28.137 -uroot -pExpenseApp@1 < /app/schema/backend.sql
+mysql -h 3.90.190.179 -uroot -pExpenseApp@1 < /app/schema/backend.sql
 print_status $?
