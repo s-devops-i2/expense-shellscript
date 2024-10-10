@@ -21,6 +21,6 @@ systemctl start nginx
 print_heading  "Enable nginx"
 systemctl enable nginx &>>$LOG
 print_status $?
-print_heading  "retart nginx"
+print_heading  "restart nginx"
 systemctl restart nginx
 print_status $?
