@@ -23,7 +23,7 @@ App_PreReq() {
   print_status $?
 
   print_heading "Download App Content"
-  sudo curl -Lo /tmp/"${component}".zip https://expense-artifacts.s3.amazonaws.com/expense-${component}-v2.zip
+  sudo curl -LO /tmp/"${component}".zip https://expense-artifacts.s3.amazonaws.com/expense-${component}-v2.zip
   print_status $?
 
   print_heading "Extract App Content"
