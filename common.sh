@@ -28,6 +28,6 @@ App_PreReq() {
 
   print_heading "Extract App Content"
   cd ${app_dir} &>>$LOG
-  unzip /tmp/${component}.zip &>>$LOG
+  sudo unzip /tmp/${component}.zip &>>$LOG
   print_status $?
 }
